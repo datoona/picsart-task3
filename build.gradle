@@ -28,14 +28,7 @@ test {
         dependsOn cleanTest
         useDefaultListeners = true
         systemProperty "app-url", System.getProperty("app-url")
-        systemProperty "os-android", System.getProperty("os-android")
-        systemProperty "os-ios", System.getProperty("os-ios")
-        systemProperty "android-device-name", System.getProperty("android-device-name")
-        systemProperty "ios-device-name", System.getProperty("ios-device-name")
-        systemProperty "ios-os-version", System.getProperty("os-version")
-        systemProperty "android-os-version", System.getProperty("os-version")
-        systemProperty "udid", System.getProperty("udid")
-        systemProperty "path", System.getProperty("path")
+
         if (web) {
             suites "src/test/resources/web.xml"
         }
