@@ -17,8 +17,8 @@ open class BaseTest {
     private val BASE_UI_URL: String = System.getProperty("app-url")
     private val defUrl: String = "https://picsart.com"
 
-    private val BROWSER: String = "firefox"
-    private val SELENIUM_REMOTE: String = "false"
+    private val BROWSER: String = "firefox"  // we can add system variable
+    private val SELENIUM_REMOTE: String = "false"  // we can add system variable
 
     private fun isWebUrlNullable(webUrl: String = defUrl): String {
         return BASE_UI_URL.ifEmpty {

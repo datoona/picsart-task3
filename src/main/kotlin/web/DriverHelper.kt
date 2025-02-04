@@ -11,8 +11,16 @@ import java.net.MalformedURLException
 import java.net.URL
 
 class DriverHelper(private val browser: String, private val remoteBrowser: String) {
-    private val width:Int = 1920
-    private val height:Int = 1080
+    private val width:String? =  System.getProperty("browser-width")
+    private val height:String? = System.getProperty("browser-height")
+
+    private fun isWidthNullable(browserW: Int = 1920): Int {
+        return width?.takeIf { it.isNotEmpty() }?.toIntOrNull() ?: browserW
+    }
+
+    private fun isHeightNullable(browserH: Int = 1080): Int {
+        return height?.takeIf { it.isNotEmpty() }?.toIntOrNull() ?: browserH
+    }
 
     fun getDriver(): WebDriver {
         if (driverThread.get() == null) {
@@ -39,9 +47,9 @@ class DriverHelper(private val browser: String, private val remoteBrowser: Strin
 
         driver.manage().deleteAllCookies()
         if (isHeadless()) {
-            driver.manage().window().size = Dimension(width, height)
+            driver.manage().window().size = Dimension(isWidthNullable(), isHeightNullable())
         } else {
-            driver.manage().window().size = Dimension(width, height)
+            driver.manage().window().size = Dimension(isWidthNullable(), isHeightNullable())
         }
         return driver
     }

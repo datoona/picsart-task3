@@ -28,6 +28,8 @@ test {
         dependsOn cleanTest
         useDefaultListeners = true
         systemProperty "app-url", System.getProperty("app-url")
+        systemProperty "browser-width", System.getProperty("browser-width")
+        systemProperty "browser-height", System.getProperty("browser-height")
 
         if (web) {
             suites "src/test/resources/web.xml"
