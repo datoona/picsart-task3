@@ -13,7 +13,7 @@ import java.net.URL
 class DriverHelper(private val browser: String, private val remoteBrowser: String) {
     private val width:String? =  System.getProperty("browser-width")
     private val height:String? = System.getProperty("browser-height")
-
+    // drivei het mec ashxatanq | e.g devices resolution
     private fun isWidthNullable(browserW: Int = 1920): Int {
         return width?.takeIf { it.isNotEmpty() }?.toIntOrNull() ?: browserW
     }

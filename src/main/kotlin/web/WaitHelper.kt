@@ -9,7 +9,7 @@ import java.time.Duration
 
 object WaitHelper {
 
-    // its example of waiting
+    // its example of waiting | Chisht waiter kazmakerpel Picsart specific Component
     private val timeout = Duration.ofSeconds(10)
 
     fun waitForElementToBeVisible(location: By) {

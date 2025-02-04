@@ -14,6 +14,7 @@ import kotlin.streams.toList
 abstract class BasePage(protected val driver: WebDriver) {
 
     // it's a just example of solution base actions of driver and locators
+    // Flaky test chunenalu hamar improve all actions ))))
     private val logger: Logger = Logger.getLogger(javaClass.simpleName)
 
     init {
@@ -134,6 +135,12 @@ abstract class BasePage(protected val driver: WebDriver) {
         logger.info("-*- Driver is clicking on $element")
         waitForElementToBeVisible(element)
         element.click()
+    }
+
+    fun click(locator: By) {
+        logger.info("-*- Driver is clicking on $locator")
+//        waitForElementToBeVisible(locator)
+        find(locator).click()
     }
 
     fun clickJS(element: WebElement) {

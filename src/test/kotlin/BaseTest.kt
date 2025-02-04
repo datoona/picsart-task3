@@ -26,6 +26,10 @@ open class BaseTest {
     }
 
 
+    /* avelacnenq mez petkakan baner
+     chat notification/report
+     TM tool
+     */
     @AfterMethod
     @Attachment(value = "Failure in method {0}", type = "image/png")
     fun tearDown(result: ITestResult): ByteArray? {
@@ -48,6 +52,7 @@ open class BaseTest {
         return "${isWebUrlNullable()}${urlPath}"
     }
 
+    // screenshot ev video | chisht klini retry implementation-ic heto
     @Attachment(value = "Failure in method {0}", type = "image/png")
     fun takeScreenshot(driver: TakesScreenshot, methodName: String): ByteArray {
         val currentDate = LocalDateTime.now();
