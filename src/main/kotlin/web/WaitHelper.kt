@@ -1,4 +1,4 @@
-package org.example.web
+package web
 
 import org.example.web.DriverHelper.Companion.getDriver
 import org.openqa.selenium.By
@@ -9,6 +9,7 @@ import java.time.Duration
 
 object WaitHelper {
 
+    // its example of waiting
     private val timeout = Duration.ofSeconds(10)
 
     fun waitForElementToBeVisible(location: By) {
@@ -38,10 +39,5 @@ object WaitHelper {
         WebDriverWait(getDriver(), timeout)
             .until(ExpectedConditions.invisibilityOf(element))
     }
-
-//    companion object {
-//        val wait: WaitHelper get() = WaitHelper()
-//    }
-
 
 }

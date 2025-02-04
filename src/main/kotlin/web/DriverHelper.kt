@@ -11,6 +11,8 @@ import java.net.MalformedURLException
 import java.net.URL
 
 class DriverHelper(private val browser: String, private val remoteBrowser: String) {
+    private val width:Int = 1920
+    private val height:Int = 1080
 
     fun getDriver(): WebDriver {
         if (driverThread.get() == null) {
@@ -25,19 +27,21 @@ class DriverHelper(private val browser: String, private val remoteBrowser: Strin
     }
 
     private fun createDriver(): WebDriver {
+        // we can add another browser e.g safari
         val driver: WebDriver = when {
             remoteBrowser.toBoolean() -> initRemoteDriver()
             "chrome" == browser -> {
                 createChromeDriver()
             }
+
             else -> createFirefoxDriver()
         }
 
         driver.manage().deleteAllCookies()
         if (isHeadless()) {
-            driver.manage().window().size = Dimension(1920, 1080)
+            driver.manage().window().size = Dimension(width, height)
         } else {
-            driver.manage().window().maximize()
+            driver.manage().window().size = Dimension(width, height)
         }
         return driver
     }
@@ -45,6 +49,7 @@ class DriverHelper(private val browser: String, private val remoteBrowser: Strin
     private fun createFirefoxDriver(): FirefoxDriver {
         val options = FirefoxOptions();
         if (isHeadless()) {
+            // hard code we can change to read system variables
             options.addArguments("--headless")
         }
         return FirefoxDriver(options)
@@ -53,6 +58,7 @@ class DriverHelper(private val browser: String, private val remoteBrowser: Strin
     private fun createChromeDriver(): ChromeDriver {
         val options = ChromeOptions();
         if (isHeadless()) {
+            // hard code we can change to read system variables
             options.addArguments("--headless")
         }
         val driver = ChromeDriver()
@@ -70,6 +76,7 @@ class DriverHelper(private val browser: String, private val remoteBrowser: Strin
     private fun initRemoteChromeDriver(): RemoteWebDriver {
         val chromeOptions = ChromeOptions()
         try {
+            // hard code we can change to read system variables
             chromeOptions.setCapability("browserVersion", "67")
             chromeOptions.setCapability("platformName", "Windows XP")
             return RemoteWebDriver(URL("http://www.example.com"), chromeOptions)
@@ -81,6 +88,7 @@ class DriverHelper(private val browser: String, private val remoteBrowser: Strin
     private fun initRemoteFirefoxDriver(): RemoteWebDriver {
         val firefoxOptions = FirefoxOptions()
         try {
+            // hard code we can change to read system variables
             firefoxOptions.setCapability("browserVersion", "67")
             firefoxOptions.setCapability("platformName", "Windows XP")
             return RemoteWebDriver(URL("http://www.example.com"), firefoxOptions)

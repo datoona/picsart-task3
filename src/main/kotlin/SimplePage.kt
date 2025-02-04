@@ -1,11 +1,12 @@
 import web.BasePage
-import org.example.web.WaitHelper.waitForElementToBeVisible1
+import web.WaitHelper.waitForElementToBeVisible1
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 
 class SimplePage(driver: WebDriver) : BasePage(driver) {
 
+    // it's classic solution PageFactory
     @FindBy(xpath = "//button[@data-testid='search-header-filter']")
     private lateinit var filterBtn: WebElement
 

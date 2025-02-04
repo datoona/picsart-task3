@@ -13,10 +13,10 @@ import java.time.format.DateTimeFormatter
 import java.util.logging.Logger
 
 open class BaseTest {
-    protected val LOGGER: Logger = Logger.getLogger(javaClass.simpleName)
-    val BASE_UI_URL = "https://picsart.com/search/all/"
-    val BROWSER = "chrhome"
-    val SELENIUM_REMOTE = "false"
+    private val logger: Logger = Logger.getLogger(javaClass.simpleName)
+    private val BASE_UI_URL = "https://picsart.com"
+    private val BROWSER = "firefox"
+    private val SELENIUM_REMOTE = "false"
 
 
     @AfterMethod
@@ -31,14 +31,14 @@ open class BaseTest {
         return output
     }
 
-    protected fun getDriver(): WebDriver {
+    protected fun getDriver(urlPath:String): WebDriver {
         val driver = DriverHelper.get(BROWSER, SELENIUM_REMOTE).getDriver()
-        driver.get(getTestPageUrl())
+        driver.get(getPageUrl(urlPath))
         return driver
     }
 
-    protected fun getTestPageUrl(): String {
-        return BASE_UI_URL
+    private fun getPageUrl(urlPath:String): String {
+        return "${BASE_UI_URL}${urlPath}"
     }
 
     @Attachment(value = "Failure in method {0}", type = "image/png")
@@ -48,8 +48,7 @@ open class BaseTest {
         val formattedDate = currentDate.format(formatDate)
         val screenshot: File = driver.getScreenshotAs(OutputType.FILE);
         "/tmp/gh/$methodName$formattedDate.png".also { path ->
-            LOGGER.severe("Screenshot taken => ${path}");
-
+            logger.severe("Screenshot taken => ${path}");
         }
         return driver.getScreenshotAs(OutputType.BYTES);
     }

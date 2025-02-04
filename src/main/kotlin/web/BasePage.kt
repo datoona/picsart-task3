@@ -1,6 +1,6 @@
 package web
 
-import org.example.web.WaitHelper.waitForElementToBeVisible
+import web.WaitHelper.waitForElementToBeVisible
 import org.openqa.selenium.*
 import org.openqa.selenium.NoSuchElementException
 import org.openqa.selenium.interactions.Actions
@@ -13,6 +13,7 @@ import kotlin.streams.toList
 
 abstract class BasePage(protected val driver: WebDriver) {
 
+    // it's a just example of solution base actions of driver and locators
     private val logger: Logger = Logger.getLogger(javaClass.simpleName)
 
     init {
