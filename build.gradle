@@ -1,0 +1,50 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.1.0'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '4.28.1'
+    // https://mvnrepository.com/artifact/io.qameta.allure/allure-testng
+    implementation group: 'io.qameta.allure', name: 'allure-testng', version: '2.29.1'
+    // https://mvnrepository.com/artifact/org.testng/testng
+    testImplementation group: 'org.testng', name: 'testng', version: '7.10.2'
+
+
+}
+
+def ui = project.hasProperty("ui")
+def web = project.hasProperty("web")
+
+test {
+    useTestNG() {
+        testLogging.showStandardStreams = true
+        dependsOn cleanTest
+        useDefaultListeners = true
+        systemProperty "app-url", System.getProperty("app-url")
+        systemProperty "os-android", System.getProperty("os-android")
+        systemProperty "os-ios", System.getProperty("os-ios")
+        systemProperty "android-device-name", System.getProperty("android-device-name")
+        systemProperty "ios-device-name", System.getProperty("ios-device-name")
+        systemProperty "ios-os-version", System.getProperty("os-version")
+        systemProperty "android-os-version", System.getProperty("os-version")
+        systemProperty "udid", System.getProperty("udid")
+        systemProperty "path", System.getProperty("path")
+        if (ui) {
+            suites "src/test/resources/e2e.xml"
+        }
+        if (web) {
+            suites "src/test/resources/web.xml"
+        }
+    }
+}
+kotlin {
+    jvmToolchain(11)
+}
