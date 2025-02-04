@@ -7,13 +7,14 @@ import org.testng.asserts.SoftAssert
 class SimpleTest : BaseTest() {
 
     @Test
-    fun aaaa(){
+    fun verifySearchPage(){
         val driver = getDriver()
         val softAssert = SoftAssert()
         val simplePage = SimplePage(driver)
         simplePage.selectFilterBtn()
-        softAssert.assertTrue(simplePage.isFilterComponentDisplayed(),"Filter component is not displayed")
+        softAssert.assertTrue(simplePage.isFilterComponentDisplayed(),"Filter component hide state  should be displayed")
+        simplePage.selectFilterBtn()
+        softAssert.assertFalse(simplePage.isFilterComponentDisplayed(),"Filter component hide state should not be displayed")
 
-        println("as")
     }
 }

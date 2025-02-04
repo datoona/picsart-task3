@@ -7,7 +7,6 @@ import org.openqa.selenium.TakesScreenshot
 import org.openqa.selenium.WebDriver
 import org.testng.ITestResult
 import org.testng.annotations.AfterMethod
-import org.testng.asserts.SoftAssert
 import java.io.File
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -18,7 +17,6 @@ open class BaseTest {
     val BASE_UI_URL = "https://picsart.com/search/all/"
     val BROWSER = "chrhome"
     val SELENIUM_REMOTE = "false"
-    val softAssert = SoftAssert()
 
 
     @AfterMethod
