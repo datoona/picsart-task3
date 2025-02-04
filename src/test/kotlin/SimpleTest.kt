@@ -5,10 +5,11 @@ import org.testng.annotations.Test
 import org.testng.asserts.SoftAssert
 
 class SimpleTest : BaseTest() {
+    private val searchPath: String = "/search/all/"
 
     @Test
     fun verifySearchPage(){
-        val driver = getDriver(urlPath = "/search/all/")
+        val driver = getDriver(urlPath = searchPath)
         val softAssert = SoftAssert()
         val simplePage = SimplePage(driver)
         simplePage.selectFilterBtn()
