@@ -19,6 +19,7 @@ class SimplePage(driver: WebDriver) : BasePage(driver) {
         waitForElementToBeVisible1(frame)
         isFrame.takeIf { it }?.let { driver.switchTo().frame(frame) }
         click(filterBtn)
+        isFrame.takeIf { it }?.let { driver.switchTo().defaultContent() }
     }
 
     fun isFilterComponentDisplayed():Boolean{
