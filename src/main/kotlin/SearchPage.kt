@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.FindBy
 
-class SimplePage(driver: WebDriver) : BasePage(driver) {
+class SearchPage(driver: WebDriver) : BasePage(driver) {
 
     // it's classic solution PageFactory
     @FindBy(xpath = "//button[@data-testid='search-header-filter']")

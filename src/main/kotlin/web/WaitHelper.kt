@@ -1,6 +1,6 @@
 package web
 
-import org.example.web.DriverHelper.Companion.getDriver
+import web.DriverHelper.Companion.getDriver
 import org.openqa.selenium.By
 import org.openqa.selenium.WebElement
 import org.openqa.selenium.support.ui.ExpectedConditions

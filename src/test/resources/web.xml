@@ -3,7 +3,7 @@
 <suite name="Check Picsart Web" verbose="1">
     <test name="Verify filter btn functionality" parallel="methods" thread-count="1">
         <classes>
-            <class name="web.SimpleTest"/>
+            <class name="web.SearchPageTest"/>
         </classes>
     </test>
 </suite>

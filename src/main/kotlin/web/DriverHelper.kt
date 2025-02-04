@@ -1,4 +1,4 @@
-package org.example.web
+package web
 
 import org.openqa.selenium.Dimension
 import org.openqa.selenium.WebDriver
