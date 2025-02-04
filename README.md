@@ -1,6 +1,6 @@
 #example run test from command line
 ###for example
-We can run test with ./gradlew test -Pui -Dos=Android command (systemProperty "os", System.getProperty("os"))
+We can run test with ./gradlew test -Pui -Dapp-url="stage"
 
 ## Run suit via xml
 for run ui tests - Pweb

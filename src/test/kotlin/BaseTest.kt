@@ -14,9 +14,17 @@ import java.util.logging.Logger
 
 open class BaseTest {
     private val logger: Logger = Logger.getLogger(javaClass.simpleName)
-    private val BASE_UI_URL = "https://picsart.com"
-    private val BROWSER = "firefox"
-    private val SELENIUM_REMOTE = "false"
+    private val BASE_UI_URL: String = System.getProperty("app-url")
+    private val defUrl: String = "https://picsart.com"
+
+    private val BROWSER: String = "firefox"
+    private val SELENIUM_REMOTE: String = "false"
+
+    private fun isWebUrlNullable(webUrl: String = defUrl): String {
+        return BASE_UI_URL.ifEmpty {
+            webUrl
+        }
+    }
 
 
     @AfterMethod
@@ -31,14 +39,14 @@ open class BaseTest {
         return output
     }
 
-    protected fun getDriver(urlPath:String): WebDriver {
+    protected fun getDriver(urlPath: String): WebDriver {
         val driver = DriverHelper.get(BROWSER, SELENIUM_REMOTE).getDriver()
         driver.get(getPageUrl(urlPath))
         return driver
     }
 
-    private fun getPageUrl(urlPath:String): String {
-        return "${BASE_UI_URL}${urlPath}"
+    private fun getPageUrl(urlPath: String): String {
+        return "${isWebUrlNullable()}${urlPath}"
     }
 
     @Attachment(value = "Failure in method {0}", type = "image/png")
