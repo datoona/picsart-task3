@@ -1,4 +1,4 @@
-package org.example.web
+package web
 
 import org.example.web.WaitHelper.waitForElementToBeVisible
 import org.openqa.selenium.*

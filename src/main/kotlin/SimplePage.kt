@@ -1,4 +1,4 @@
-import org.example.web.BasePage
+import web.BasePage
 import org.example.web.WaitHelper.waitForElementToBeVisible1
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.WebElement
