@@ -15,16 +15,19 @@ class SimplePage(driver: WebDriver) : BasePage(driver) {
     @FindBy(xpath = "//div[contains(@class, 'search-filter-root') and contains(@class, 'hide')]")
     private lateinit var filterComponent: WebElement
 
-    fun selectFilterBtn(isFrame:Boolean = true){
+    fun selectFilterBtn(isFrame: Boolean = true) {
         waitForElementToBeVisible1(frame)
         isFrame.takeIf { it }?.let { driver.switchTo().frame(frame) }
         click(filterBtn)
         isFrame.takeIf { it }?.let { driver.switchTo().defaultContent() }
     }
 
-    fun isFilterComponentDisplayed():Boolean{
-     return isDisplayed(filterComponent)
+    fun isFilterComponentDisplayed(): Boolean {
+        return isDisplayed(filterComponent)
+    }
 
+    fun isFilterComponentNotDisplayed(): Boolean {
+        return isNotDisplayed(filterComponent)
     }
 
 

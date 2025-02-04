@@ -14,7 +14,7 @@ class SimpleTest : BaseTest() {
         simplePage.selectFilterBtn()
         softAssert.assertTrue(simplePage.isFilterComponentDisplayed(),"Filter component hide state  should be displayed")
         simplePage.selectFilterBtn()
-        softAssert.assertFalse(simplePage.isFilterComponentDisplayed(),"Filter component hide state should not be displayed")
+        softAssert.assertFalse(simplePage.isFilterComponentNotDisplayed(),"Filter component hide state should not be displayed")
 
     }
 }

@@ -1,7 +1,6 @@
 package org.example.web
 
 import org.example.web.WaitHelper.waitForElementToBeVisible
-import org.example.web.WaitHelper.waitForElementToBeVisible1
 import org.openqa.selenium.*
 import org.openqa.selenium.NoSuchElementException
 import org.openqa.selenium.interactions.Actions
@@ -14,42 +13,40 @@ import kotlin.streams.toList
 
 abstract class BasePage(protected val driver: WebDriver) {
 
-    protected val LOGGER: Logger = Logger.getLogger(javaClass.simpleName)
-
+    private val logger: Logger = Logger.getLogger(javaClass.simpleName)
 
     init {
         PageFactory.initElements(driver, this)
     }
 
     fun type(element: WebElement, text: String) {
-        LOGGER.info("-*- Driver is filling in $element via type method  with $text")
+        logger.info("-*- Driver is filling in $element via type method  with $text")
         waitForElementToBeVisible(element)
         element.clear()
         element.sendKeys(text)
     }
 
     fun find(location: By): WebElement {
-        LOGGER.info("-*- Driver is finding element by $location")
+        logger.info("-*- Driver is finding element by $location")
         return driver.findElement(location)
     }
 
     fun isDisplayed(element: WebElement): Boolean = try {
         element.isDisplayed
-        LOGGER.info("-*- $element is displayed ")
+        logger.info("-*- $element is displayed ")
         true
     } catch (e: NoSuchElementException) {
-        LOGGER.info("-*- $element is not displayed $e")
+        logger.info("-*- $element is not displayed $e")
         false
     }
-
 
     fun isNotDisplayed(element: WebElement): Boolean {
         return try {
             element.isDisplayed
-            LOGGER.info("-*- $element is not displayed ")
+            logger.info("-*- $element is not displayed ")
             false
         } catch (e: NoSuchElementException) {
-            LOGGER.info("-*- $element is displayed $e")
+            logger.info("-*- $element is displayed $e")
             true
         }
     }
@@ -71,7 +68,7 @@ abstract class BasePage(protected val driver: WebDriver) {
     }
 
     fun driverSleep(time: Int) {
-        LOGGER.info("-*- Driver is sleeping with: $time")
+        logger.info("-*- Driver is sleeping with: $time")
         try {
             Thread.sleep(time.toLong())
         } catch (e: InterruptedException) {
@@ -81,7 +78,7 @@ abstract class BasePage(protected val driver: WebDriver) {
 
     fun getElementText(element: WebElement): String {
         waitForElementToBeVisible(element)
-        LOGGER.info("-*- Driver is getting Texts: " + element.text)
+        logger.info("-*- Driver is getting Texts: " + element.text)
         return element.text
     }
 
@@ -92,29 +89,29 @@ abstract class BasePage(protected val driver: WebDriver) {
     }
 
     fun scrollDown(vertical: Int) {
-        LOGGER.info("-*- Driver is scrolling down with: $vertical")
+        logger.info("-*- Driver is scrolling down with: $vertical")
         val js = driver as JavascriptExecutor?
         js!!.executeScript("window.scrollBy(0,$vertical)")
     }
 
     fun scrollUp(vertical: Int) {
-        LOGGER.info("-*- Driver is scrolling up with: $vertical")
+        logger.info("-*- Driver is scrolling up with: $vertical")
         val js = driver as JavascriptExecutor?
         js!!.executeScript("window.scrollBy(0,$vertical)")
     }
 
     fun scrollUntilElement(element: WebElement) {
-        LOGGER.info("-*- Driver is scrolling until: $element")
+        logger.info("-*- Driver is scrolling until: $element")
         (driver as JavascriptExecutor).executeScript("arguments[0].scrollIntoView(true);", element)
     }
 
     fun openNewTab(url: String) {
-        LOGGER.info("-*- Driver is opening new tab with: $url URL")
+        logger.info("-*- Driver is opening new tab with: $url URL")
         (driver as JavascriptExecutor).executeScript("window.open('$url','_blank')")
     }
 
     fun changeTab(index: Int) {
-        LOGGER.info("-*- Driver is changing tab with: $index")
+        logger.info("-*- Driver is changing tab with: $index")
         val windows: Array<Any> = driver.windowHandles.toTypedArray()
         driver.switchTo().window(windows[index] as String).toString()
     }
@@ -133,7 +130,7 @@ abstract class BasePage(protected val driver: WebDriver) {
     }
 
     fun click(element: WebElement) {
-        LOGGER.info("-*- Driver is clicking on $element")
+        logger.info("-*- Driver is clicking on $element")
         waitForElementToBeVisible(element)
         element.click()
     }
